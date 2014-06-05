@@ -1,0 +1,24 @@
+<div id="query_bar">
+	<div class="search-input-container">
+		<input id="html_query" placeholder="Query..." type="text" />
+		<span style="right: 10px;" id="find-counter"></span>
+	</div>
+		<input id="modify_dom" style="width: 12px" type="checkbox"/><label style="display:inline;" for="modify_dom">Modify</label>
+		<div class="navigator">
+			<button id="find-prev" class="btn no-focus" tabindex="-1" title="Previous Match (Shift+F3)" disabled="">◀</button>
+			<button id="find-next" class="btn no-focus" tabindex="-1" title="Next Match (F3)" disabled="">▶</button>
+		</div>
+		<table id="method_table" style="display:none;">
+			<tr>
+				<td>
+					<input class="method_input last" placeholder="Run Method..." type="text" />
+				</td>
+				<td>
+					<input class="arguments_input" placeholder="Arguments(Seperate with comma)" type="text" />
+				</td>
+				<td>
+					<input value="Run" type="button" style="width:100px;" class="btn primary" id="modification_query_run" />
+				</td>
+			</tr>
+		</table>
+</div>

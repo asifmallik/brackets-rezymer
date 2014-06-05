@@ -1,0 +1,18 @@
+- [x]Select closing tag as well
+- [ ]Improve UI and UX
+  - [ ]Allow users to remove rows from method table
+- [ ]Allows users to extending Rezymer(add methods to cheerio)
+  - [ ] Demo extensions
+- [ ]Modify UI for running multiple chained methods
+  - [x]Add support for chained methods
+  - [ ]{Suggestion}Add support for seperate method chains
+- [ ]Fix Decoding/Encoding issue
+- [ ]Mark all modifications to Cheerio and its dependencies as "RezymerEdit" in comment
+- [ ]Code refactoring
+  - [x]Add Comments
+  - [ ]{Suggestion}Organize code into smaller functions for reusability
+- [ ]{Suggestion}Add support for selecting current element selected(cursor selection as opposed to Rezymer selection) for example: {this} .blue selects all elements with class "blue" within the tag on which the cursor is currently on
+- [ ]Add option for query within selection 
+- [ ]{Suggestion}Remove NodeDomain
+  - [ ]Browserify Cheerio
+  - [ ]Move the code into main.js
