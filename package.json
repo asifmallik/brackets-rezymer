@@ -1,9 +1,9 @@
 {
-  "name": "Brackets Rezymer",
-  "title": "Rezymer for Brackets",
-  "description": "Queries HTML DOM right from brackets.",
+  "name": "brackets-rezymer",
+  "title": "Brackets Rezymer",
+  "description": "Queries HTML DOM right from brackets",
   "homepage": "https://github.com/asifmallik/brackets-rezymer",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "license": "MIT",
   "engines": {
     "brackets": ">=0.30.0"

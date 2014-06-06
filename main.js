@@ -20,7 +20,9 @@ define(function (require, exports, module) {
 	var HTMLQueryModalBar,
 		//isHTMLQueryModalBarClosed = true, 
 		RezymerDomain = new NodeDomain("Rezymer", ExtensionUtils.getModulePath(module, "domain")),
-		prevQuery;
+		prevQuery,
+		selections = [],
+		selectionIndex = 0;
 	
 	//Rezymer Functions
 	/**
@@ -47,9 +49,13 @@ define(function (require, exports, module) {
          * @param: Selections to be formatted and set as selections
      */
 	function setCMSelections(editor, lineLengths, unformattedSelections){
-		var selections = []; //Formatted selections
+		selections = [],
+		selectionIndex = 0;
 		$("#find-counter").html(unformattedSelections.length + ((unformattedSelections.length === 1) ? " selection" : " selections"));
-		if(unformattedSelections.length === 0) return;
+		if(unformattedSelections.length === 0){
+			$("#find-next, #find-prev").attr("disabled", "");
+			return;
+		} 
 		unformattedSelections.forEach(function(unformattedSelection){ //Iterates through every selection
 			selections.push({
 				start: charToLineChar(lineLengths, unformattedSelection.openingTag.start),
@@ -63,9 +69,9 @@ define(function (require, exports, module) {
 			}
 		});
 		editor.setSelections(selections);
+		$("#find-next, #find-prev").removeAttr("disabled");
         editor._codeMirror.scrollIntoView({from: selections[0].start, to: selections[0].end});
 	}
-	
 	/**
          * Queries HTML Document 
          *
@@ -140,7 +146,8 @@ define(function (require, exports, module) {
 	//Commands and Menu
 	var CMD_QUERY_ID = "rezymer.HTMLQuery";
 	CommandManager.register("Query HTML", CMD_QUERY_ID, function(){
-		if(!EditorManager.getActiveEditor()) return; //Continue only if any file is open
+		var editor = EditorManager.getActiveEditor();
+		if(!editor) return; //Continue only if any file is open
 		HTMLQueryModalBar = new ModalBar(require("text!htmlContent/html-query-modal-bar.html"), true);
 		
 		//Event Listeners
@@ -163,6 +170,19 @@ define(function (require, exports, module) {
 			var tr = $(this).removeClass("last").parents("tr");
 			tr.find("#modification_query_run").remove(); //removes run button
 			tr.after('<tr><td><input class="method_input last" placeholder="Run Method..." type="text" /></td><td><input class="arguments_input" placeholder="Arguments(Seperate with comma)" type="text" /></td><td><input value="Run" type="button" style="width:100px;" class="btn primary" id="modification_query_run" /></td></tr>'); //Adds another row after tr(Should it be replaced by a seperate html document which will be required?)
+		});
+		console.log("ran");
+		$("#query_bar").on("click", "#find-prev:not([disabled])", function(){
+			selectionIndex-=2;
+			var i = (selectionIndex === -2) ? selectionIndex = selections.length-2 : selectionIndex;
+			console.log(i);
+			editor._codeMirror.scrollIntoView({from: selections[i].start, to: selections[i].end});
+		});
+		$("#query_bar").on("click", "#find-next:not([disabled])", function(){
+			selectionIndex+=2;
+			var i = (selectionIndex === selections.length) ? selectionIndex = 0 : selectionIndex;
+			console.log(i); 
+			editor._codeMirror.scrollIntoView({from: selections[i].start, to: selections[i].end});
 		});
     });
     RezymerMenu.addMenuItem(CMD_QUERY_ID, "Ctrl-Shift-R");
