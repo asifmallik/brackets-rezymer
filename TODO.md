@@ -16,4 +16,4 @@
 - [ ] {Suggestion}Remove NodeDomain
   - [ ] Browserify Cheerio
   - [ ] Move the all server side code into main.js
-- [ ] Add support for find previous and find next
+- [x] Add support for find previous and find next
