@@ -1,4 +1,4 @@
-#Brackets-Rezymer
+#Brackets Rezymer
 Brackets Rezymer is an extension for Brackets which allows searching and modifying HTML DOM by utilizing CSS Selectors and jQuery API directly from Brackets! It uses Cheerio library from node to parse and query the HTML.
 
 ##Installation
