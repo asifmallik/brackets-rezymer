@@ -18,7 +18,6 @@ define(function (require, exports, module) {
 	
 	//Other "Global" Varables
 	var HTMLQueryModalBar,
-		//isHTMLQueryModalBarClosed = true, 
 		RezymerDomain = new NodeDomain("Rezymer", ExtensionUtils.getModulePath(module, "domain")),
 		prevQuery,
 		selections = [],
@@ -149,7 +148,6 @@ define(function (require, exports, module) {
 		var editor = EditorManager.getActiveEditor();
 		if(!editor) return; //Continue only if any file is open
 		HTMLQueryModalBar = new ModalBar(require("text!htmlContent/html-query-modal-bar.html"), true);
-		
 		//Event Listeners
 		$("#modify_dom").change(function(){ //Listens to modify checkbox event
 			if($(this).prop("checked")){ //Shows modification table if checked
@@ -171,17 +169,14 @@ define(function (require, exports, module) {
 			tr.find("#modification_query_run").remove(); //removes run button
 			tr.after('<tr><td><input class="method_input last" placeholder="Run Method..." type="text" /></td><td><input class="arguments_input" placeholder="Arguments(Seperate with comma)" type="text" /></td><td><input value="Run" type="button" style="width:100px;" class="btn primary" id="modification_query_run" /></td></tr>'); //Adds another row after tr(Should it be replaced by a seperate html document which will be required?)
 		});
-		console.log("ran");
 		$("#query_bar").on("click", "#find-prev:not([disabled])", function(){
 			selectionIndex-=2;
 			var i = (selectionIndex === -2) ? selectionIndex = selections.length-2 : selectionIndex;
-			console.log(i);
 			editor._codeMirror.scrollIntoView({from: selections[i].start, to: selections[i].end});
 		});
 		$("#query_bar").on("click", "#find-next:not([disabled])", function(){
 			selectionIndex+=2;
 			var i = (selectionIndex === selections.length) ? selectionIndex = 0 : selectionIndex;
-			console.log(i); 
 			editor._codeMirror.scrollIntoView({from: selections[i].start, to: selections[i].end});
 		});
     });
