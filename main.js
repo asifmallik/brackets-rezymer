@@ -148,6 +148,10 @@ define(function (require, exports, module) {
 		var editor = EditorManager.getActiveEditor();
 		if(!editor) return; //Continue only if any file is open
 		HTMLQueryModalBar = new ModalBar(require("text!htmlContent/html-query-modal-bar.html"), true);
+		//Sets prevQuery to null when the modal bar is closed
+		$(HTMLQueryModalBar).on("close", function(){
+			prevQuery = null;
+		});
 		//Event Listeners
 		$("#modify_dom").change(function(){ //Listens to modify checkbox event
 			if($(this).prop("checked")){ //Shows modification table if checked
