@@ -77,7 +77,7 @@ define(function (require, exports, module) {
          * @param: Query
 		 * @param: Will document be modified?
      */
-	function queryDocument(query, modify) {
+	function queryDocument(query, modify, editor) {
 		
 		if (query === "" || (query === prevQuery && !modify)) return;//Return if query is empty or equal to previous query(and if modify is set to false)
 		
@@ -95,7 +95,6 @@ define(function (require, exports, module) {
 				return l.length;
 			});
 			RezymerDomain.exec("rezymer.HTMLQuery",
-							   content,
 							   query
 							  ).done(function(selections) {
 									setCMSelections(editor, lineLengths, selections);
@@ -123,15 +122,15 @@ define(function (require, exports, module) {
 				modificationOption.arguments = args || {}; //If args is undefined set arguments to empty object
 				modificationOptions.push(modificationOption);
 			});
-			RezymerDomain.exec("rezymer.HTMLQueryModify", content, query, modificationOptions)
+			RezymerDomain.exec("rezymer.HTMLQueryModify", query, modificationOptions)
 			.done(function(newContent){
+				RezymerDomain.exec("rezymer.HTMLParse", newContent); //Refresh Parsed HTML
 				editor._codeMirror.setValue(newContent);
 				lines = newContent.split(EOL);
 				lineLengths = lines.map(function(l) {
 					return l.length;
 				});
 				RezymerDomain.exec("rezymer.HTMLQuery",
-							   newContent,
 							   query
 							  ).done(function(selections) {
 									setCMSelections(editor, lineLengths, selections);
@@ -148,6 +147,7 @@ define(function (require, exports, module) {
 		var editor = EditorManager.getActiveEditor();
 		if(!editor) return; //Continue only if any file is open
 		HTMLQueryModalBar = new ModalBar(require("text!htmlContent/html-query-modal-bar.html"), true);
+		RezymerDomain.exec("rezymer.HTMLParse", editor._codeMirror.getValue());
 		//Sets prevQuery to null when the modal bar is closed
 		$(HTMLQueryModalBar).on("close", function(){
 			prevQuery = null;
