@@ -3,10 +3,10 @@
   "title": "Brackets Rezymer",
   "description": "Queries HTML DOM right from brackets",
   "homepage": "https://github.com/asifmallik/brackets-rezymer",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "license": "MIT",
   "engines": {
-    "brackets": ">=0.30.0"
+    "brackets": ">=0.38.0"
   },
   "keywords": [
 	"HTML",

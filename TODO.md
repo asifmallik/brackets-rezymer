@@ -1,7 +1,7 @@
 - [x] Select closing tag as well
 - [ ] Improve UI and UX
   - [ ] Allow users to remove rows from method table
-- [ ] Allows users to extending Rezymer(add methods to cheerio)
+- [ ] Allows users to extend Rezymer(add methods to cheerio)
   - [ ] Demo extensions
 - [ ] Modify UI for running multiple chained methods
   - [x] Add support for chained methods
