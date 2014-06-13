@@ -1,6 +1,7 @@
 - [x] Select closing tag as well
 - [ ] Improve UI and UX
   - [ ] Allow users to remove rows from method table
+  - [ ] Add autocomplete to method input
 - [ ] Allows users to extend Rezymer(add methods to cheerio)
   - [ ] Demo extensions
 - [ ] Modify UI for running multiple chained methods
