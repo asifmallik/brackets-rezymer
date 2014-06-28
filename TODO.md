@@ -15,3 +15,4 @@
 - [ ] {Suggestion}Add support for selecting current element selected(cursor selection as opposed to Rezymer selection) for example: {this} .blue selects all elements with class "blue" within the tag on which the cursor is currently on
 - [ ] Add option for query within selection
 - [x] Add support for find previous and find next
+- [ ] Add fuzzy mode
